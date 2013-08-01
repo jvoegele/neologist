@@ -22,6 +22,10 @@ end
 
 gem 'jquery-rails'
 
+gem 'therubyracer', '~> 0.11.4'
+gem 'less-rails', '~> 2.3.3'
+gem 'twitter-bootstrap-rails', '~> 2.2.7'
+
 group :development, :test do
   gem 'rspec-rails', '2.14.0'
   gem 'cucumber-rails', '1.3.1', :require => false
