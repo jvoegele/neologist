@@ -9,6 +9,7 @@ Feature: User Sign Up
     When I sign up with valid information
     Then I should be registered
     And I should see a confirmation message
+    And I should be logged in
 
   @wip
   Scenario: Username already taken

@@ -45,6 +45,11 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Neologist</a>
+          <% if current_user %>
+            <span id="current_username"><%= current_user.username %></span>
+          <% else %>
+            <a href="#">Login</a>
+          <% end %>
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Home", root_path %></li>

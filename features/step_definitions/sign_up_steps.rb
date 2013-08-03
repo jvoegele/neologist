@@ -21,3 +21,7 @@ Then(/^I should see a confirmation message$/) do
   page.should have_content("Signed up as jvoegele")
 end
 
+Then(/^I should be logged in$/) do
+  step 'I should be logged in as "jvoegele"'
+end
+
