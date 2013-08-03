@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
  */
+
+div.user-quip {
+  border: 1px solid gray;
+  margin: 5px;
+}
+

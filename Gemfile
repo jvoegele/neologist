@@ -29,7 +29,9 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'rspec-rails', '2.14.0'
   gem 'cucumber-rails', '1.3.1', :require => false
+  gem "selenium-webdriver", "~> 2.33.0"
   gem 'database_cleaner', '1.0.1'
+  gem "factory_girl", "~> 4.2.0"
 end
 
 # To use ActiveModel has_secure_password
