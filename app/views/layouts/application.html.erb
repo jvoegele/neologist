@@ -46,12 +46,14 @@
           </a>
           <a class="brand" href="#">Neologist</a>
           <div class="container nav-collapse">
-            <ul class="nav">
+            <ul class="nav pull-right">
               <li><%= link_to "Home", root_path %></li>
               <% if current_user %>
                 <li><a id="current_username"><%= current_user.username %></a></li>
+                <li><%= link_to "logout", logout_path %></li>
               <% else %>
-                <li><a href="#" style="display: none;">Login</a></li>
+                <li><%= link_to "Log In", login_path %></li>
+                <li><%= link_to "Sign Up", signup_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->

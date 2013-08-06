@@ -1,0 +1,14 @@
+
+<%= form_tag sessions_path, class: 'form-signin' do %>
+  <h2 class='form-signin-heading'>Log In</h2>
+  <div class="field">
+    <%= label_tag :username %><br />
+    <%= text_field_tag :username, params[:username] %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions"><%= submit_tag "Log In", class: 'btn btn-large btn-primary' %></div>
+<% end %>
+
