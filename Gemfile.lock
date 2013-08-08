@@ -177,6 +177,7 @@ DEPENDENCIES
   factory_girl (~> 4.2.0)
   jquery-rails
   less-rails (~> 2.3.3)
+  nokogiri (~> 1.6.0)
   rails (= 3.2.14)
   rspec-rails (= 2.14.0)
   sass-rails (~> 3.2.3)

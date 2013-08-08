@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout 'basic_form'
+
   def show
     @user = User.find(params[:id])
   end
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
       self.current_user_id = @user.id
       redirect_to root_url, notice: "Signed up as #{@user.username}"
     else
-      render new
+      render :new
     end
   end
 end

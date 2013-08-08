@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout 'basic_form'
+
   def new
   end
 
