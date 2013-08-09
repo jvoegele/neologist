@@ -1,0 +1,8 @@
+<%= form_tag quip_path, class: 'form-signin' do %>
+  <h2 class='form-signin-heading'>Compose your Quip</h2>
+  <% if @quip.errors.any? %>
+    <p class="text-error"><strong>Quip <%=@quip.errors[:content].join(', ')%></strong></p>
+  <% end %>
+  <textarea id="quip_content" name="quip_content" rows="5" class="input-large"><%=@quip.content%></textarea>
+  <div class="actions"><%= submit_tag "Post Quip", class: 'btn btn-large btn-primary' %></div>
+<% end %>

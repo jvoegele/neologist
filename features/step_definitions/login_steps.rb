@@ -22,3 +22,9 @@ end
 Then(/^I should see an error message$/) do
   page.should have_content('Username or password is invalid')
 end
+
+Given(/^that I am logged in$/) do
+  step "that I am on the login page"
+  step "I login with valid credentials"
+end
+

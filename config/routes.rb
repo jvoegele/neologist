@@ -6,13 +6,16 @@ Neologist::Application.routes.draw do
 
   get "home/index"
 
+  get 'signup', to: 'users#new'
+
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
   resources :sessions
 
-  get 'signup', to: 'users#new'
+  get 'quip', to: 'quips#new', as: 'quip'
+  post 'quip', to: 'quips#create', as: 'quip'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

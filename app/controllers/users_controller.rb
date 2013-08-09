@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout 'basic_form'
+  layout 'basic_form', only: [:new]
 
   def show
     @user = User.find(params[:id])

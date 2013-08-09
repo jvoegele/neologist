@@ -14,10 +14,12 @@
             <%= yield %>
           </div>
           <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>About Us</h3>
-              Neologist is the place for you to share all of your pithy quips.
-            </div><!--/.well -->
+            <% if current_user %>
+              <div class="well sidebar-nav">
+                <h3><%= current_user.username %></h3>
+                <%= link_to 'Compose new Quip', quip_path, class: 'btn' %>
+              </div><!--/.well -->
+            <% end %>
           </div><!--/span-->
         </div><!--/row-->
 
