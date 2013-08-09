@@ -10,6 +10,14 @@ Given(/^the User has posted the following quips:$/) do |table|
   end
 end
 
+Given(/^the user has posted more than "(.*?)" quips$/) do |count|
+  user = User.first
+  count = Integer(count) * 2
+  count.times do |i|
+    FactoryGirl.create(:quip, content: "#{i}", user: user)
+  end
+end
+
 When(/^I visit the User's page$/) do
   User.count.should == 1
   visit(user_path(User.first))

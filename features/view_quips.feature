@@ -13,6 +13,12 @@ Feature: View Quips
     When I visit the User's page
     Then I should see the following quips:
       | quip |
-      | Don't panic |
-      | Time is an illusion. Lunchtime doubly so. |
       | Isn't it enough to see that a garden is beautiful without having to believe that there are fairies at the bottom of it too? |
+      | Time is an illusion. Lunchtime doubly so. |
+      | Don't panic |
+
+  Scenario: View a user's latest quips
+    Given there is a User
+    And the user has posted more than "20" quips
+    When I visit the User's page
+    Then I should see the most recent "20" quips in reverse chronological order
