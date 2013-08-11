@@ -35,6 +35,14 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+  def following_count
+    followed_users.count
+  end
+
+  def followers_count
+    followers.count
+  end
+
   def new_quip(attrs)
     quip = quips.build(attrs)
   end

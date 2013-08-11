@@ -143,5 +143,17 @@ describe User do
         @user.should_not be_following(other_user)
       end
     end
+
+    describe "#following_count" do
+      it "returns the number of followed users" do
+        @user.following_count.should == 1
+      end
+    end
+    describe "#followers_count" do
+      it "returns the number of followers" do
+        other_user.follow!(@user)
+        @user.followers_count.should == 1
+      end
+    end
   end
 end
