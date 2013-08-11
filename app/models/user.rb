@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
         message: 'must contain only alphanumeric characters.'
       }
 
+  def quip_count
+    quips.count
+  end
+
   def following?(other_user)
     followed_users.include?(other_user)
   end

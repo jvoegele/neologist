@@ -61,6 +61,13 @@ describe User do
     end
   end
 
+  describe "#quip_count" do
+    it "returns the total number of quips" do
+      9.times do @user.new_quip(content: 'hello').save end
+      @user.quip_count.should == 9
+    end
+  end
+
   describe "#new_quip" do
     let(:quip) { @user.new_quip(content: 'Hello world!') }
     it "returns a new Quip with the given content" do
