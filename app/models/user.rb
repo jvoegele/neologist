@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :password, :password_confirmation
   has_many :quips
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
   has_secure_password
 
   validates :password, on: :create,
@@ -16,6 +22,18 @@ class User < ActiveRecord::Base
         with: /^\w+$/i,
         message: 'must contain only alphanumeric characters.'
       }
+
+  def following?(other_user)
+    followed_users.include?(other_user)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by_followed_id(other_user.id).destroy
+  end
 
   def new_quip(attrs)
     quip = quips.build(attrs)

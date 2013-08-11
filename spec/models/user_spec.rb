@@ -110,4 +110,38 @@ describe User do
       latest_quips.should == sorted_quips
     end
   end
+
+  context "relationships" do
+    it { should respond_to(:followed_users) }
+    it { should respond_to(:following?) }
+
+    let(:other_user) { FactoryGirl.create(:user) }
+    before do
+      @user.follow!(other_user)
+    end
+
+    describe "#follow!" do
+      it "should be following the other user" do
+        @user.should be_following(other_user)
+      end
+
+      it "should include the other user in its list of followed" do
+        @user.followed_users.should include(other_user)
+      end
+
+      describe "followed user" do
+        subject { other_user }
+        it "should be followed by the following user" do
+          subject.followers.should include(@user)
+        end
+      end
+    end
+
+    describe "#unfollow!" do
+      it "should not be following the other user any longer" do
+        @user.unfollow!(other_user)
+        @user.should_not be_following(other_user)
+      end
+    end
+  end
 end

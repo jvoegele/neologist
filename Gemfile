@@ -33,6 +33,8 @@ group :development, :test do
   gem "selenium-webdriver", "~> 2.33.0"
   gem 'database_cleaner', '1.0.1'
   gem "factory_girl", "~> 4.2.0"
+
+  gem 'pry'
 end
 
 # To use ActiveModel has_secure_password
