@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
         message: 'must contain only alphanumeric characters.'
       }
 
+  def new_quip(attrs)
+    quip = quips.build(attrs)
+  end
 
   def latest_quips(args={count: 20})
     self.quips.all(limit: Integer(args[:count]), order: 'created_at DESC')

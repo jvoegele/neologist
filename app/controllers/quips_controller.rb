@@ -6,8 +6,7 @@ class QuipsController < ApplicationController
   end
 
   def create
-    @quip = Quip.new(content: params['quip_content'])
-    @quip.user_id = current_user.id
+    @quip = current_user.new_quip(content: params['quip_content'])
 
     if @quip.save
       flash[:notice] = 'Your Quip was posted!'

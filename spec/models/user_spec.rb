@@ -61,12 +61,29 @@ describe User do
     end
   end
 
+  describe "#new_quip" do
+    let(:quip) { @user.new_quip(content: 'Hello world!') }
+    it "returns a new Quip with the given content" do
+      quip.content.should == 'Hello world!'
+    end
+
+    it "is associated with the user" do
+      quip.user.should == @user
+    end
+
+    it "is in the user's quips" do
+      @user.quips.should include(quip)
+    end
+
+    it "is not yet saved" do
+      quip.should be_new_record
+    end
+  end
+
   describe "#latest_quips" do
     before do
       42.times do |i|
-        quip = Quip.new(content: "I am quip #{i}")
-        quip.user_id = @user.id
-        quip.save
+        @user.new_quip(content: "I am quip #{i}").save
       end
     end
 
