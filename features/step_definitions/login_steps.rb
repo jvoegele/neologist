@@ -3,7 +3,7 @@ Given(/^that I am on the login page$/) do
 end
 
 When(/^I login with valid credentials$/) do
-  FactoryGirl.create(:user, username: 'jvoegele', password: 'something', password_confirmation: 'something')
+  @current_user = FactoryGirl.create(:user, username: 'jvoegele', password: 'something', password_confirmation: 'something')
   fill_in 'username', with: 'jvoegele'
   fill_in 'password', with: 'something'
   click_button 'Log In'

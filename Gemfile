@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
 gem "nokogiri", "~> 1.6.0"
+gem "will_paginate", "~> 3.0.4"
+gem "will_paginate-bootstrap", "~> 0.2.4"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

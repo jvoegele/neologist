@@ -15,10 +15,7 @@
           </div>
           <div class="span3">
             <% if current_user %>
-              <div class="well sidebar-nav">
-                <h3><%= current_user.username %></h3>
-                <%= link_to 'Compose new Quip', quip_path, class: 'btn' %>
-              </div><!--/.well -->
+              <%= content_for?(:user_info) ? yield(:user_info) : render(current_user) %>
             <% end %>
           </div><!--/span-->
         </div><!--/row-->

@@ -1,5 +1,8 @@
 Neologist::Application.routes.draw do
 
+  resources :relationships
+
+
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'home#index'
@@ -11,7 +14,11 @@ Neologist::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions
 
   get 'quip', to: 'quips#new', as: 'quip'

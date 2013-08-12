@@ -1,5 +1,5 @@
 Given(/^there is a User$/) do
-  FactoryGirl.create(:user, username: '___', password: '______', password_confirmation: '______')
+  @user = FactoryGirl.create(:user, username: '___', password: '______', password_confirmation: '______')
 end
 
 Given(/^the User has posted the following quips:$/) do |table|

@@ -18,4 +18,20 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def following
+    show_follows(:followed_users)
+  end
+
+  def followers
+    show_follows(:followers)
+  end
+
+private
+
+  def show_follows(list)
+    @user = User.find(params[:id])
+    @users = @user.send(list).paginate(page: params[:page])
+    render 'show_follows'
+  end
 end

@@ -1,0 +1,17 @@
+<div class="well sidebar-nav">
+  <h3><%=user.username%></h3>
+  <ul>
+    <li><%= user.quip_count %> <%= link_to "Quips", user_path(user), id: 'quip_stats' %></li>
+    <li><%= user.following_count %> <%= link_to "Following", following_user_path(user), id: 'following_stats' %></li>
+    <li><%= user.followers_count %> <%= link_to "Followers", followers_user_path(user), id: 'followers_stats' %></li>
+  </ul>
+
+  <% if current_user %>
+    <% if current_user == user %>
+    <% elsif current_user.following?(user) %>
+      <%= render 'unfollow' %>
+    <% else %>
+      <%= render 'follow' %>
+    <% end %>
+  <% end %>
+</div>
