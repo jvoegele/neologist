@@ -54,4 +54,9 @@ class User < ActiveRecord::Base
   def latest_quips(args={count: 20})
     self.quips.all(limit: Integer(args[:count]), order: 'created_at DESC')
   end
+
+  def timeline
+    followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Quip.where("user_id IN (#{followed_user_ids}) OR user_id = :user_id", user_id: self.id).order("created_at DESC")
+  end
 end

@@ -14,6 +14,8 @@ Neologist::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+  get 'timeline', to: 'users#timeline', as: 'timeline'
+
   resources :users do
     member do
       get :following, :followers

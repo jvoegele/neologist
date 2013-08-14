@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     show_follows(:followers)
   end
 
+  def timeline
+    @quips = current_user.timeline.paginate(page: params[:page])
+  end
+
 private
 
   def show_follows(list)

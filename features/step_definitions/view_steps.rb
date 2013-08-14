@@ -9,5 +9,5 @@ Then(/^I should see the most recent "(.*?)" quips in reverse chronological order
   count = Integer(count)
   quips = page.all('.user-quip').map {|quip_element| quip_element.text}
   quips.should have_exactly(count).items
-  quips.sort.reverse.should == quips
+  quips.sort_by {|q| q.to_i}.reverse.should == quips
 end
