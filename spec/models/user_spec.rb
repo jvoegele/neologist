@@ -163,4 +163,40 @@ describe User do
       end
     end
   end
+
+  context "favorites" do
+    it { should respond_to(:add_favorite!) }
+    it { should respond_to(:favorite_quips) }
+    it { should respond_to(:favorite?) }
+
+    let(:quip) { FactoryGirl.create(:quip) }
+
+    describe "#favorite_quips" do
+      it "should initially be empty" do
+        @user.favorite_quips.should be_empty
+      end
+
+      it "should not be favorited" do
+        @user.should_not be_favorite(quip)
+      end
+    end
+
+    describe "#add_favorite!" do
+      it "should mark the quip as favorite" do
+        @user.add_favorite!(quip)
+        @user.should be_favorite(quip)
+      end
+      it "should add the quip to #favorite_quips" do
+        @user.add_favorite!(quip)
+        @user.favorite_quips.should include(quip)
+      end
+
+      it "should ignore quips that are already favorites" do
+        @user.should_not be_favorite(quip)
+        @user.add_favorite!(quip)
+        @user.should be_favorite(quip)
+        @user.add_favorite!(quip).should be_false
+      end
+    end
+  end
 end

@@ -15,6 +15,8 @@ Neologist::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'timeline', to: 'users#timeline', as: 'timeline'
+  get 'favorites', to: 'users#favorites', as: 'favorites'
+  post 'add_favorite', to: 'users#add_favorite', as: 'add_favorite'
 
   resources :users do
     member do

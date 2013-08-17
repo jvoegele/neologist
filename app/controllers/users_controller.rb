@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authorize, except: [:show, :new, :create]
   layout 'basic_form', only: [:new]
 
   def show
@@ -29,6 +30,16 @@ class UsersController < ApplicationController
 
   def timeline
     @quips = current_user.timeline.paginate(page: params[:page])
+  end
+
+  def favorites
+    @quips = current_user.favorite_quips.paginate(page: params[:page])
+  end
+
+  def add_favorite
+    quip = Quip.find_by_id(params[:quip_id])
+    current_user.add_favorite!(quip)
+    redirect_to favorites_path
   end
 
 private

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :favorites, foreign_key: "user_id"
+  has_many :favorite_quips, through: :favorites, source: :quip
   has_secure_password
 
   validates :password, on: :create,
@@ -22,6 +24,17 @@ class User < ActiveRecord::Base
         with: /^\w+$/i,
         message: 'must contain only alphanumeric characters.'
       }
+
+
+  def add_favorite!(quip)
+    unless self.favorite?(quip)
+      favorites.create!(quip_id: quip.id)
+    end
+  end
+
+  def favorite?(quip)
+    favorite_quips.include?(quip)
+  end
 
   def quip_count
     quips.count

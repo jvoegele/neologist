@@ -10,3 +10,12 @@ FactoryGirl.define do
     f.content 'Test quip content'
   end
 end
+
+def create_quips(user, count)
+  (1..count).reduce([]) do |memo, n|
+    quip = user.new_quip(content: "#{user.username}: %06d" % n)
+    quip.save
+    yield(quip, n) if block_given?
+    memo << quip
+  end
+end

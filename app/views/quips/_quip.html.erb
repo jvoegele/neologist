@@ -1,3 +1,7 @@
 <div class="row">
-  <div class="span4 user-quip"><%=quip.content%></div>
+  <div class="span4 user-quip">
+    <p><%=quip.content%></p>
+    <p><%= button_to 'Favorite', add_favorite_path(quip_id: quip.id),
+              id: "favorite_#{quip.id}" %></p>
+  </div>
 </div>
