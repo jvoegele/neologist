@@ -10,5 +10,7 @@
     <%= password_field_tag :password %>
   </div>
   <div class="actions"><%= submit_tag "Log In", class: 'btn btn-large btn-primary' %></div>
+
 <% end %>
 
+<p class="text-center">Don't have an account? <%= link_to "Sign Up", signup_path %></p>
