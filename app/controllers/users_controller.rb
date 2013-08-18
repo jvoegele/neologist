@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       self.current_user_id = @user.id
-      redirect_to root_url, notice: "Signed up as #{@user.username}"
+      redirect_to timeline_path, notice: "Signed up as #{@user.username}"
     else
       render :new
     end

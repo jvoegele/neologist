@@ -28,3 +28,7 @@ Given(/^that I am logged in$/) do
   step "I login with valid credentials"
 end
 
+Given(/^that I am not logged in$/) do
+  visit logout_path
+end
+
