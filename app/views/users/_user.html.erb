@@ -1,5 +1,5 @@
 <div class="well sidebar-nav">
-  <h3><%=user.username%></h3>
+  <h3 class="text-info"><%=user.username%></h3>
   <ul>
     <li><%= user.quip_count %> <%= link_to "Quips", user_path(user), id: 'quip_stats' %></li>
     <li><%= user.following_count %> <%= link_to "Following", following_user_path(user), id: 'following_stats' %></li>
@@ -13,5 +13,6 @@
     <% else %>
       <%= render 'follow' %>
     <% end %>
+    <%= link_to "Compose new Quip", quip_path, class: "btn btn-primary"%>
   <% end %>
 </div>
