@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :password_confirmation
+  attr_accessible :full_name, :email, :username,
+                  :password, :password_confirmation
   has_many :quips
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -11,9 +12,9 @@ class User < ActiveRecord::Base
   has_many :favorite_quips, through: :favorites, source: :quip
   has_secure_password
 
-  validates :password, on: :create,
-      presence: true,
-      length: { minimum: 6, maximum: 24 }
+  validates :full_name, presence: true, length: { minimum: 3, maximum: 32 }
+
+  validates :email, email: true
 
   validates :username, presence: true,
       uniqueness: {
@@ -24,6 +25,10 @@ class User < ActiveRecord::Base
         with: /^\w+$/i,
         message: 'must contain only alphanumeric characters.'
       }
+
+  validates :password, on: :create,
+      presence: true,
+      length: { minimum: 6, maximum: 24 }
 
 
   def add_favorite!(quip)

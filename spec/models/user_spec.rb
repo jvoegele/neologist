@@ -2,12 +2,21 @@ require 'spec_helper'
 
 describe User do
   before do
-    @user = User.new(username: 'jvoegele', password: 'something', password_confirmation: 'something')
-    @user.save
+    @user = FactoryGirl.create(:user, full_name: 'Jason Voegele', username: 'jvoegele')
   end
 
   it "is valid with valid attributes" do
     @user.should be_valid
+  end
+
+  it "is not valid without a full name" do
+    @user.full_name = nil
+    @user.should_not be_valid
+  end
+
+  it "is not valid without an email address" do
+    @user.email = nil
+    @user.should_not be_valid
   end
 
   it "is not valid without a username" do

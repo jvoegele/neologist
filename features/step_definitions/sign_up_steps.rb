@@ -7,6 +7,8 @@ Given(/^I am not logged in$/) do
 end
 
 When(/^I sign up with valid information$/) do
+  fill_in 'user_full_name', with: 'Jason Voegele'
+  fill_in 'user_email', with: 'jason@jvoegele.com'
   fill_in 'user_username', with: 'jvoegele'
   fill_in 'user_password', with: 'something'
   fill_in 'user_password_confirmation', with: 'something'
