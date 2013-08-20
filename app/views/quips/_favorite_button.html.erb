@@ -1,0 +1,7 @@
+<% if current_user && current_user.favorite?(quip) %>
+  <%= button_to 'Unfavorite', remove_favorite_path(quip_id: quip.id),
+      id: "unfavorite_#{quip.id}", class: "unfavorite btn-warning btn-mini"%>
+<% else %>
+  <%= button_to 'Favorite', add_favorite_path(quip_id: quip.id),
+      id: "favorite_#{quip.id}", class: "favorite btn-primary btn-mini"%>
+<% end %>

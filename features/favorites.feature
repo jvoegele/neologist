@@ -19,3 +19,8 @@ Feature: Favorite Quips
     And I mark one of the quips as a favorite
     Then I should see the quip in my list of favorites
 
+  Scenario: Unfavorite a quip
+    Given I have marked some quips as favorites
+    And I unfavorite one of my favorite quips
+    Then I should not see the quip in my list of favorites
+

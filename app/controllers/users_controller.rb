@@ -42,6 +42,11 @@ class UsersController < ApplicationController
     redirect_to favorites_path
   end
 
+  def remove_favorite
+    quip = Quip.find_by_id(params[:quip_id])
+    current_user.remove_favorite!(quip)
+    redirect_to favorites_path
+  end
 private
 
   def show_follows(list)

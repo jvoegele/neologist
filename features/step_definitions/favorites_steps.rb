@@ -15,6 +15,12 @@ When(/^I mark one of the quips as a favorite$/) do
   page.find("##{button_id}").click
 end
 
+When(/^I unfavorite one of my favorite quips$/) do
+  step %{I visit my favorite quips page}
+  @unfavorite = @favorite_quips.first
+  page.click_button("unfavorite_#{@unfavorite.id}")
+end
+
 Then(/^I should see all of my favorite quips$/) do
   @favorite_quips.each do |quip|
     page.should have_content(quip.content)
@@ -24,5 +30,10 @@ end
 Then(/^I should see the quip in my list of favorites$/) do
   step %{I visit my favorite quips page}
   page.should have_content("User quip #{@some}")
+end
+
+Then(/^I should not see the quip in my list of favorites$/) do
+  step %{I visit my favorite quips page}
+  page.should_not have_content(@unfavorite.content)
 end
 

@@ -32,6 +32,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def remove_favorite!(quip)
+    if self.favorite?(quip)
+      favorites.find_by_quip_id(quip.id).destroy
+    end
+  end
+
   def favorite?(quip)
     favorite_quips.include?(quip)
   end

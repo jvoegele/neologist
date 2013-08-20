@@ -17,6 +17,7 @@ Neologist::Application.routes.draw do
   get 'timeline', to: 'users#timeline', as: 'timeline'
   get 'favorites', to: 'users#favorites', as: 'favorites'
   post 'add_favorite', to: 'users#add_favorite', as: 'add_favorite'
+  post 'remove_favorite', to: 'users#remove_favorite', as: 'remove_favorite'
 
   resources :users do
     member do

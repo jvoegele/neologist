@@ -166,6 +166,7 @@ describe User do
 
   context "favorites" do
     it { should respond_to(:add_favorite!) }
+    it { should respond_to(:remove_favorite!) }
     it { should respond_to(:favorite_quips) }
     it { should respond_to(:favorite?) }
 
@@ -196,6 +197,20 @@ describe User do
         @user.add_favorite!(quip)
         @user.should be_favorite(quip)
         @user.add_favorite!(quip).should be_false
+      end
+    end
+
+    describe "#remove_favorite!" do
+      before do
+        @user.add_favorite!(quip)
+      end
+      it "should ensure that the quip is not favorite" do
+        @user.remove_favorite!(quip)
+        @user.should_not be_favorite(quip)
+      end
+      it "should remove the quip from #favorite_quips" do
+        @user.remove_favorite!(quip)
+        @user.should_not be_favorite(quip)
       end
     end
   end
