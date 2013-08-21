@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span4 user-quip">
     <div class="quip-attribution">
-      <span class="quip-attribution-user"><%=quip.user.username%></span>
+      <span class="quip-attribution-user"><%= link_to quip.user.full_name, quip.user %><br /> <%=quip.user.username%></span>
       <span class="quip-attribution-time"><%=time_ago_in_words(quip.created_at)%> ago</span>
     </div>
     <div class="quip-content"><%=quip.content%></div>
