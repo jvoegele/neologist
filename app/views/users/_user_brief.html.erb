@@ -2,10 +2,10 @@
   <td colspan="3"><h3><%= link_to user.full_name, user %> (@<%=user.username%>)</h3></td>
   <td rowspan="2"><%= render partial: 'users/follow_form', locals: {user: user} %></td>
 </tr>
-<tr>
+<tr class="user-stats">
   <td><%= render_with_locals('users/quip_stats', user: user) %></td>
-  <td><%= render_with_locals('users/following_stats', user: user) %></td>
-  <td><%= render_with_locals('users/followers_stats', user: user) %></td>
+  <td class="left-border"><%= render_with_locals('users/following_stats', user: user) %></td>
+  <td class="left-border"><%= render_with_locals('users/followers_stats', user: user) %></td>
   <td>&nbsp;</td>
 </tr>
-
+<tr class="spacer"><td colspan="4">&nbsp;</td></tr>

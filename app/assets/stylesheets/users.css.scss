@@ -1,6 +1,17 @@
+tr.spacer {
+  padding-bottom: 5em;
+}
 
 table.users tr td {
   padding-left: 1em;
+}
+
+tr.user-stats {
+  border-bottom: thin solid silver;
+}
+
+td.left-border {
+  border-left: thin solid silver;
 }
 
 .form-signin {
