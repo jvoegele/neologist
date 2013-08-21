@@ -1,0 +1,5 @@
+$("#follow_form_<%=user.id%>").html("<%= escape_javascript(render_with_locals('users/unfollow', user: user)) %>")
+$("#following_count_<%=user.id%>").html("<%= user.following_count %>")
+$("#followers_count_<%=user.id%>").html("<%= user.followers_count %>")
+$("#following_count_<%=current_user.id%>").html("<%= current_user.following_count %>")
+$("#followers_count_<%=current_user.id%>").html("<%= current_user.followers_count %>")

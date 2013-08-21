@@ -1,1 +1,7 @@
-<li class="user-follow"><%= link_to user.username, user %></li>
+<tr class="user-brief">
+  <td><%= link_to user.full_name, user %> (@<%=user.username%>)</td>
+  <td>
+    <%= render partial: 'users/follow_form', locals: {user: user} %>
+  </td>
+</tr>
+

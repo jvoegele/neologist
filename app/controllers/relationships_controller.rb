@@ -4,8 +4,15 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
-    flash[:notice] = "Following #{@user.username}"
-    redirect_to @user
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Following #{@user.username}"
+        redirect_to @user
+      end
+      format.js do
+        render('create', locals: {user: @user})
+      end
+    end
   end
 
   def destroy
@@ -15,8 +22,15 @@ class RelationshipsController < ApplicationController
     if relationship
       @user = relationship.followed
       current_user.unfollow!(@user)
-      flash[:notice] = "Unfollowed #{@user.username}"
     end
-    redirect_to @user
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Unfollowed #{@user.username}"
+        redirect_to @user
+      end
+      format.js do
+        render('destroy', locals: {user: @user})
+      end
+    end
   end
 end
