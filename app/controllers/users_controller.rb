@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   before_filter :authorize, except: [:show, :new, :create]
   layout 'basic_form', only: [:new]
 
+  def index
+    @users = User.where('1=1').paginate(page: params[:page])
+    render 'show_follows'
+  end
+
   def show
     @user = User.find(params[:id])
   end
