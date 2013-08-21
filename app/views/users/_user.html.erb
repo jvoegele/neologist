@@ -2,9 +2,9 @@
   <h3 class="text-info"><%=user.full_name%></h3>
   <h4 class="text-info">@<%=user.username%></h4>
   <ul>
-    <li><%= user.quip_count %> <%= link_to "Quips", user_path(user), id: 'quip_stats' %></li>
-    <li><span id="following_count_<%=user.id%>"><%= user.following_count %></span> <%= link_to "Following", following_user_path(user), id: 'following_stats' %></li>
-    <li><span id="followers_count_<%=user.id%>"><%= user.followers_count %></span> <%= link_to "Followers", followers_user_path(user), id: 'followers_stats' %></li>
+    <li><%= render_with_locals('users/quip_stats', user: user) %></li>
+    <li><%= render_with_locals('users/following_stats', user: user) %></li>
+    <li><%= render_with_locals('users/followers_stats', user: user) %></li>
   </ul>
 
   <% if current_user %>

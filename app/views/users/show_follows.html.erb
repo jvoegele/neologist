@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span8">
     <% if @users.any? %>
-      <table class="users">
+      <table class="users span8">
         <%= render partial: 'user_brief', collection: @users, as: :user %>
       </table>
       <%= will_paginate %>
