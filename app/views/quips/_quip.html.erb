@@ -5,6 +5,6 @@
       <span class="quip-attribution-time"><%=time_ago_in_words(quip.created_at)%> ago</span>
     </div>
     <div class="quip-content"><%=quip.content%></div>
-    <div class="quip-toolbar"><%=render(partial: 'quips/favorite_button', locals: {quip: quip})%></div>
+    <div class="quip-toolbar"><%=render(partial: 'quips/favorite_form', locals: {quip: quip})%></div>
   </div>
 </div>

@@ -1,13 +1,25 @@
-Given(/^I have marked some quips as favorites$/) do
-  user = FactoryGirl.create(:user)
-  quips = create_quips(user, 5) do |quip, n|
-    @current_user.add_favorite!(quip) if n.odd?
+def mark_some_favorites(user)
+  other_user = FactoryGirl.create(:user)
+  quips = create_quips(other_user, 5) do |quip, n|
+    user.add_favorite!(quip) if n.odd?
   end
-  @favorite_quips = quips.find_all {|quip| @current_user.favorite?(quip)}
+  @favorite_quips = quips.find_all {|quip| user.favorite?(quip)}
+end
+
+Given(/^I have marked some quips as favorites$/) do
+  mark_some_favorites(@current_user)
+end
+
+Given(/^the User has marked some quips as favorites$/) do
+  mark_some_favorites(@user)
 end
 
 When(/^I visit my favorite quips page$/) do
   visit favorites_path
+end
+
+When(/^I visit the User's favorite quips page$/) do
+  visit favorites_user_path(@user)
 end
 
 When(/^I mark one of the quips as a favorite$/) do
@@ -22,6 +34,12 @@ When(/^I unfavorite one of my favorite quips$/) do
 end
 
 Then(/^I should see all of my favorite quips$/) do
+  @favorite_quips.each do |quip|
+    page.should have_content(quip.content)
+  end
+end
+
+Then(/^I should see all of the User's favorite quips$/) do
   @favorite_quips.each do |quip|
     page.should have_content(quip.content)
   end

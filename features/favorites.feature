@@ -24,3 +24,10 @@ Feature: Favorite Quips
     And I unfavorite one of my favorite quips
     Then I should not see the quip in my list of favorites
 
+  Scenario: Other User's favorites
+    Given there is a User
+    And the User has marked some quips as favorites
+    When I visit the User's favorite quips page
+    Then I should see all of the User's favorite quips
+    And the quips should be displayed in reverse chronological order
+

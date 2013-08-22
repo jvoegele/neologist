@@ -5,6 +5,7 @@
     <li><%= render_with_locals('users/quip_stats', user: user) %></li>
     <li><%= render_with_locals('users/following_stats', user: user) %></li>
     <li><%= render_with_locals('users/followers_stats', user: user) %></li>
+    <li><%= user.favorite_count %> <%= link_to "Favorites", favorites_user_path(user) %></li>
   </ul>
 
   <% if current_user %>

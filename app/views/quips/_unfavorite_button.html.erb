@@ -1,0 +1,3 @@
+<%= button_to 'Unfavorite', remove_favorite_path(quip_id: quip.id),
+  id: "unfavorite_#{quip.id}", class: "unfavorite btn-warning btn-mini",
+  remote: true %>

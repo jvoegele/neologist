@@ -1,0 +1,7 @@
+<div id="favorite_button_container_<%=quip.id%>">
+  <% if current_user && current_user.favorite?(quip) %>
+    <%= render_with_locals('quips/unfavorite_button', quip: quip) %>
+  <% else %>
+    <%= render_with_locals('quips/favorite_button', quip: quip) %>
+  <% end %>
+</div>

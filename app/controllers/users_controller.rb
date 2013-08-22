@@ -42,19 +42,16 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @quips = current_user.favorite_quips.paginate(page: params[:page])
+    user = params[:id] ? User.find(params[:id]) : current_user
+    @quips = user.favorite_quips.paginate(page: params[:page])
   end
 
   def add_favorite
-    quip = Quip.find_by_id(params[:quip_id])
-    current_user.add_favorite!(quip)
-    redirect_to favorites_path
+    do_favorite(:add_favorite!)
   end
 
   def remove_favorite
-    quip = Quip.find_by_id(params[:quip_id])
-    current_user.remove_favorite!(quip)
-    redirect_to favorites_path
+    do_favorite(:remove_favorite!)
   end
 private
 
@@ -62,5 +59,18 @@ private
     @user = User.find(params[:id])
     @users = @user.send(list).paginate(page: params[:page])
     render 'show_follows'
+  end
+
+  def do_favorite(action)
+    quip = Quip.find_by_id(params[:quip_id])
+    current_user.send(action, quip)
+    respond_to do |format|
+      format.html do
+        redirect_to favorites_path
+      end
+      format.js do
+        render(action.to_s.sub(/!$/, ''), locals: {quip: quip})
+      end
+    end
   end
 end

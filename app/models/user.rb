@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
     favorite_quips.include?(quip)
   end
 
+  def favorite_count
+    favorite_quips.count
+  end
+
   def quip_count
     quips.count
   end

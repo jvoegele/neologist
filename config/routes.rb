@@ -22,6 +22,7 @@ Neologist::Application.routes.draw do
   resources :users do
     member do
       get :following, :followers
+      get :favorites
     end
   end
   resources :sessions
