@@ -9,6 +9,8 @@ gem "email_validator", "~> 1.4.0"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'less-rails', '~> 2.3.3'
+gem 'twitter-bootstrap-rails', '~> 2.2.7'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,8 +24,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 
   gem 'therubyracer', '~> 0.11.4'
-  gem 'less-rails', '~> 2.3.3'
-  gem 'twitter-bootstrap-rails', '~> 2.2.7'
 end
 
 group :production do
