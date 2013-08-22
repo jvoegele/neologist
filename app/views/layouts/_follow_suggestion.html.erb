@@ -1,0 +1,6 @@
+<% if current_user && current_user.following_count < 20 %>
+  <div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    Looking for people to follow? <%= link_to "Click here for suggestions.", users_path %>
+  </div>
+<% end %>
