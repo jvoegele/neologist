@@ -9,8 +9,6 @@ gem "email_validator", "~> 1.4.0"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,9 +26,15 @@ group :assets do
   gem 'twitter-bootstrap-rails', '~> 2.2.7'
 end
 
+group :production do
+  gem "pg", "~> 0.16.0"
+end
+
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'sqlite3'
+
   gem 'rspec-rails', '2.14.0'
   gem 'cucumber-rails', '1.3.1', :require => false
   gem "launchy", "~> 2.3.0"
