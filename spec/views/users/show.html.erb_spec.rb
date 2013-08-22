@@ -5,6 +5,8 @@ describe "users/show.html.erb" do
   let(:current_user) { FactoryGirl.create(:user, username: 'arbitrary') }
   before do
     assign(:user, user)
+    @quips = user.quips.paginate(page: 1)
+    assign(:quips, @quips)
     view.stub(:current_user).and_return(current_user)
   end
 

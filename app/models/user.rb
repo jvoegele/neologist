@@ -30,7 +30,6 @@ class User < ActiveRecord::Base
       presence: true,
       length: { minimum: 6, maximum: 24 }
 
-
   def add_favorite!(quip)
     unless self.favorite?(quip)
       favorites.create!(quip_id: quip.id)
@@ -73,10 +72,6 @@ class User < ActiveRecord::Base
 
   def new_quip(attrs)
     quip = quips.build(attrs)
-  end
-
-  def latest_quips(args={count: 20})
-    self.quips.all(limit: Integer(args[:count]), order: 'created_at DESC')
   end
 
   def timeline

@@ -19,6 +19,6 @@ Feature: View Quips
 
   Scenario: View a user's latest quips
     Given there is a User
-    And the user has posted more than "20" quips
+    And the user has posted more than "30" quips
     When I visit the User's page
-    Then I should see the most recent "20" quips in reverse chronological order
+    Then I should see the most recent "30" quips in reverse chronological order

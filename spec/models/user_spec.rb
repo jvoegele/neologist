@@ -96,34 +96,26 @@ describe User do
     end
   end
 
-  describe "#latest_quips" do
+  describe "quips" do
     before do
       42.times do |i|
         @user.new_quip(content: "I am quip #{i}").save
       end
     end
 
-    it "returns at most 20 quips by default" do
-      @user.latest_quips.should have_exactly(20).items
-    end
-
-    it "takes an optional count parameter" do
-      @user.latest_quips(count: 33).should have_exactly(33).items
-    end
-
     it "returns the most recent quips" do
       all_quips = Set.new(@user.quips)
-      latest_quips = Set.new(@user.latest_quips)
-      older_quips = all_quips - latest_quips
-      latest_quips.each do |quip|
+      quips = Set.new(@user.quips)
+      older_quips = all_quips - quips
+      quips.each do |quip|
         older_quips.all? { |old_quip| quip.created_at.should be > old_quip.created_at }
       end
     end
 
     it "returns quips in descending date order" do
-      latest_quips = @user.latest_quips.to_a
-      sorted_quips = latest_quips.sort_by {|quip| quip.created_at}.to_a.reverse
-      latest_quips.should == sorted_quips
+      quips = @user.quips.to_a
+      sorted_quips = quips.sort_by {|quip| quip.created_at}.to_a.reverse
+      quips.should == sorted_quips
     end
   end
 

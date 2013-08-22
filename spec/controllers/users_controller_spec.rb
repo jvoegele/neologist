@@ -9,6 +9,7 @@ describe UsersController do
       current_user.add_favorite!(quip) if i.even?
     end
     @favorites, @others = @all_quips.partition {|q| current_user.favorite?(q)}
+    @favorites = @favorites.sort_by { |quip| quip.created_at }.reverse
   end
 
   describe "GET 'favorites'" do
